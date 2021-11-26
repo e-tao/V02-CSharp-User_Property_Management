@@ -23,9 +23,9 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-            
+
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Right" >
         </StackPanel>
         <Grid Grid.Column="0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
@@ -40,9 +40,9 @@
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home" VerticalAlignment="Center"/>
-                        <Button Content="HOME" Width="100"></Button>
+                        <Button Content="HOME" Width="100"/>
                     </StackPanel>
-                    
+
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal">
@@ -56,10 +56,42 @@
                         <Button Content="ADD USER" Width="100"></Button>
                     </StackPanel>
                 </ListBoxItem>
+                <ListBoxItem>
+                    <StackPanel Orientation="Horizontal" Visibility="Hidden" d:Visibility="Visible">
+                        <materialDesign:PackIcon Kind="Hothouse" VerticalAlignment="Center"/>
+                        <Button Content="PROPERTY" Width="100"></Button>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <StackPanel Orientation="Horizontal" Visibility="Hidden" d:Visibility="Visible">
+                        <materialDesign:PackIcon Kind="Hothouse" VerticalAlignment="Center"/>
+                        <Button Content="ADD PROP" Width="100"></Button>
+                    </StackPanel>
+                </ListBoxItem>
             </ListBox>
+
             
+
+
+
+
+
+
         </Grid>
-        
-        
+        <ListView Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" d:Text="Sample">
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </Window>
