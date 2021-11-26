@@ -1,0 +1,65 @@
+﻿<Window x:Class="FireRnRGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FireRnRGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+            
+        </StackPanel>
+        <Grid Grid.Column="0" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="User Image goes here" />
+            </StackPanel>
+
+            <ListBox Grid.Row="1">
+                <ListBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" VerticalAlignment="Center"/>
+                        <Button Content="HOME" Width="100"></Button>
+                    </StackPanel>
+                    
+                </ListBoxItem>
+                <ListBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="User" VerticalAlignment="Center"/>
+                        <Button Content="USER" Width="100"></Button>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="User" VerticalAlignment="Center"/>
+                        <Button Content="ADD USER" Width="100"></Button>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+            
+        </Grid>
+        
+        
+    </Grid>
+</Window>
