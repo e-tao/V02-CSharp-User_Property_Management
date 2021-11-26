@@ -20,73 +20,66 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Right" >
+        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" >
+ 
         </StackPanel>
+        
         <Grid Grid.Column="0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="120" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource SecondaryHueMidBrush}">
                 <TextBlock Text="User Image goes here" />
             </StackPanel>
 
-            <ListBox Grid.Row="1">
+            <ListBox Grid.Row="1" Background="{StaticResource PrimaryHueDarkBrush}">
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" VerticalAlignment="Center"/>
-                        <Button Content="HOME" Width="100"/>
-                    </StackPanel>
-
-                </ListBoxItem>
-                <ListBoxItem>
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="User" VerticalAlignment="Center"/>
-                        <Button Content="USER" Width="100"></Button>
+                        <materialDesign:PackIcon Kind="ViewDashboard"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
+                        <Button Content="DASHBOARD" Width="100" FontSize="11" Margin="0,5,5,5"/>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="User" VerticalAlignment="Center"/>
-                        <Button Content="ADD USER" Width="100"></Button>
+                        <materialDesign:PackIcon Kind="USER"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
+                        <Button Content="USER" Width="100" FontSize="11" Margin="0,5,5,5"/>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <StackPanel Orientation="Horizontal" Visibility="Hidden" d:Visibility="Visible">
-                        <materialDesign:PackIcon Kind="Hothouse" VerticalAlignment="Center"/>
-                        <Button Content="PROPERTY" Width="100"></Button>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="UserAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
+                        <Button Content="+ USER" Width="100" FontSize="11" Margin="0,5,5,5"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem>
-                    <StackPanel Orientation="Horizontal" Visibility="Hidden" d:Visibility="Visible">
-                        <materialDesign:PackIcon Kind="Hothouse" VerticalAlignment="Center"/>
-                        <Button Content="ADD PROP" Width="100"></Button>
+                <ListBoxItem Visibility="Hidden" d:Visibility="Visible">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
+                        <Button Content="PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5"/>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Visibility="Hidden" d:Visibility="Visible">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="HomeAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
+                        <Button Content="+ PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5"/>
                     </StackPanel>
                 </ListBoxItem>
             </ListBox>
-
-            
-
-
-
-
-
-
         </Grid>
         <ListView Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}">
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
+                <DataTemplate >
+                    <Grid >
+                        <Grid.ColumnDefinitions  >
                             <ColumnDefinition Width="80" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" d:Text="Sample">
+                        <TextBlock Grid.Column="1" d:Text="Sample" >
                         </TextBlock>
                     </Grid>
                 </DataTemplate>
