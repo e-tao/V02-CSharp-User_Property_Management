@@ -63,7 +63,8 @@ namespace FireRnRGUI
                 First.Text = loginUser.UserFirstName;
                 Last.Text = loginUser.UserLastName;
                 UserLogo.ImageSource = new BitmapImage(new Uri(loginUser.Photo, UriKind.Absolute));
-                MessageBox.Show($"Welcome {selecteduser.UserFirstName} {selecteduser.UserLastName}", "Welcome", MessageBoxButton.OK);
+                WelcomeUser.Text = loginUser.UserFirstName + " " + loginUser.UserLastName;
+                WelcomeTitle.Visibility = Visibility.Visible;
                 Property.Visibility = Visibility.Visible;
                 AddProperty.Visibility = Visibility.Visible;
             }
