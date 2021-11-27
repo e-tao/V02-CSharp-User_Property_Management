@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -34,21 +34,33 @@
                 <RowDefinition Height="120" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource SecondaryHueMidBrush}">
-                <TextBlock Text="User Image goes here" />
+            <!-- user logo -->
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource SecondaryHueMidBrush}">
+                <StackPanel>
+                    <Ellipse Width="80" Height="80" Margin="10" Opacity="0.85">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="UserLogo"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource MaterialDesignColumnHeader}">
+                        <Run x:Name="First"/> <Run x:Name="Last" />
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
 
             <ListBox Grid.Row="1" Background="{StaticResource PrimaryHueDarkBrush}">
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="ViewDashboard"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
-                        <Button Content="DASHBOARD" Width="100" FontSize="11" Margin="0,5,5,5"/>
+                        <Button Content="DASHBOARD" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnDash_Click"/>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="USER"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
-                        <Button Content="USER" Width="100" FontSize="11" Margin="0,5,5,5"/>
+                        <Button Content="USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnUser_Click"/>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
@@ -57,13 +69,13 @@
                         <Button Content="+ USER" Width="100" FontSize="11" Margin="0,5,5,5"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem Visibility="Hidden" d:Visibility="Visible">
+                <ListBoxItem x:Name="Property" Visibility="Hidden" d:Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem Visibility="Hidden" d:Visibility="Visible">
+                <ListBoxItem x:Name="AddProperty" Visibility="Hidden" d:Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="HomeAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="+ PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5"/>
@@ -71,20 +83,49 @@
                 </ListBoxItem>
             </ListBox>
         </Grid>
-        <ListView Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}">
+        <ListView x:Name="UserList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid >
                         <Grid.ColumnDefinitions  >
-                            <ColumnDefinition Width="80" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="450" />
+                            <ColumnDefinition Width="30" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" d:Text="Sample" >
-                        </TextBlock>
+                        <Border Grid.Column="0">
+                            <Ellipse Width="80" Height="80" Margin="2">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Photo}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+                        <StackPanel  Orientation="Vertical" Grid.Column="1" Margin="10">
+                            <!-- name row  -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    Name: <Run Text="{Binding UserFirstName}" /> <Run Text="{Binding UserLastName}" />
+                                </TextBlock>
+                            </StackPanel>
+                            <!-- address row  -->
+                            <StackPanel>
+                                <TextBlock>
+                                    Address: <Run Text="{Binding MailAddrStreetNo}" /> <Run Text="{Binding MailAddrStreet}" />, <Run Text="{Binding MailAddrCity}" />, <Run Text="{Binding MailAddrProv}" /> <Run Text="{Binding MailAddrCountry}"/>, <Run Text="{Binding MailPostalCode}"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <!-- contacts row  -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    Email: <Run Text="{Binding Email}" /> Phone No: <Run Text="{Binding PhoneNo, TargetNullValue=n/a}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- login icon-->
+                        <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
+                            <materialDesign:PackIcon Kind="Login" Height="30" Width="30" Opacity="0.5" Margin="-5" MouseDown="PackIconLogin_MouseDown" ToolTip="Click to login"/>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </Grid>
 </Window>
