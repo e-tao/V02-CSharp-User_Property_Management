@@ -3,17 +3,15 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Windows;
 global using FireRnRGUI.Model;
+global using System.Windows.Media.Imaging;
+global using System.Windows.Input;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata;
-
-
 
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
