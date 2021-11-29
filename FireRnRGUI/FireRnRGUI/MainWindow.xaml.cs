@@ -41,18 +41,16 @@ namespace FireRnRGUI
             UserList.Visibility = Visibility.Hidden;
             using var db = new FirernrContext();
             userList = db.Users.ToList();
+            BtnUser_Click(this, e);
         }
 
         private void BtnUser_Click(object sender, RoutedEventArgs e)
         {
             UserList.ItemsSource = userList;
             UserList.Visibility = Visibility.Visible;
+            AddUser.Visibility = Visibility.Hidden;
         }
 
-        private void BtnDash_Click(object sender, RoutedEventArgs e)
-        {
-            UserList.Visibility = Visibility.Hidden;
-        }
 
         private void PackIconLogin_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -72,6 +70,12 @@ namespace FireRnRGUI
             {
                 MessageBox.Show("No user is selected!", "Error", MessageBoxButton.OK);
             }
+        }
+
+        private void BtnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            AddUser.Visibility = Visibility.Visible;
+            UserList.Visibility = Visibility.Hidden;
         }
     }
 }
