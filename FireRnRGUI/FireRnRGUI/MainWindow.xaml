@@ -83,7 +83,7 @@
                 </ListBoxItem>
             </ListBox>
         </Grid>
-        <!--main view user-->
+        <!-- main view user -->
         <ListView x:Name="UserList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate >
@@ -128,10 +128,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    
 
-        <!--main view add user-->
-        <Grid x:Name="AddUser" Grid.Column="1" Grid.Row="1" Visibility="Hidden" d:Visibility="Visible">
+        <!-- main view add user -->
+        <Grid x:Name="AddUser" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
@@ -208,6 +207,11 @@
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 materialDesign:ButtonAssist.CornerRadius="25"
                 ToolTip="Click to add a user" Margin="10"/>
+        </Grid>
+    
+        <!-- main view property -->
+        <Grid x:Name="PropertyList" Grid.Column="1" Grid.Row="1" Visibility="Hidden" d:Visibility="Visible">
+            
         </Grid>
     </Grid>
 </Window>
