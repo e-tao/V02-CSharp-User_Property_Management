@@ -77,5 +77,30 @@ namespace FireRnRGUI
             AddUser.Visibility = Visibility.Visible;
             UserList.Visibility = Visibility.Hidden;
         }
+
+        private void BtnSaveUser_Click(object sender, RoutedEventArgs e)
+        {
+            var newUser = new User
+            {
+                UserName = UserName.Text,
+                UserFirstName = FirstName.Text,
+                UserLastName = LastName.Text,
+                Gender = Gender.SelectedValue.ToString(),
+                Photo = Photo.Text,
+                MailAddrStreetNo = StreetNo.Text,
+                MailAddrStreet = Street.Text,
+                MailAddrCity = City.Text,
+                MailAddrProv = Province.Text,
+                MailAddrCountry = Country.Text,
+                MailPostalCode = PostalCode.Text,
+                Email = Email.Text,
+                PhoneNo = Phone.Text
+            };
+
+            using var db = new FirernrContext();
+            db.Users.Add(newUser);
+            db.SaveChanges();
+            Window_Loaded(this, e);
+        }
     }
 }

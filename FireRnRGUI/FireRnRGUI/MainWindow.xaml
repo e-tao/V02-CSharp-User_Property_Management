@@ -148,9 +148,14 @@
                 <Label Content="Username" />
                 <TextBox x:Name="UserName" Width="120" />
             </StackPanel>
-            <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Bottom">
-                <TextBox x:Name="Photo" Width="120" />
-                <!-- User photo combobox here-->
+            <StackPanel Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="2" Orientation="Horizontal">
+                <Label Content="Photo" VerticalAlignment="Bottom" />
+                <TextBox x:Name="Photo" VerticalAlignment="Bottom" Width="250" />
+                <Ellipse VerticalAlignment="Bottom" Width="80" Height="80" Margin="20,1,1,1" Opacity="0.85">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding ElementName=Photo, Path=Text}" />
+                    </Ellipse.Fill>
+                </Ellipse>
             </StackPanel>
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom">
                 <Label Content="First Name" />
@@ -162,7 +167,7 @@
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom">
                 <Label Content="Gender" />
-                <ComboBox x:Name="Gender" Margin="10,0,0,0">
+                <ComboBox x:Name="Gender" Margin="10,0,0,0"  SelectedValuePath="Content" materialDesign:HintAssist.Hint="Gender" materialDesign:HintAssist.HintOpacity=".26">
                     <ComboBoxItem Content="M" />
                     <ComboBoxItem Content="F" />
                 </ComboBox>
@@ -191,7 +196,18 @@
                 <Label Content="Postal Code" />
                 <TextBox x:Name="PostalCode" Width="120" />
             </StackPanel>
-            <Button Grid.Row="4" Grid.Column="2" Content="SUBMIT" VerticalAlignment="Bottom"/>
+            <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                <Label Content="E-mail" />
+                <TextBox x:Name="Email" Width="120" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                <Label Content="Phone" />
+                <TextBox x:Name="Phone" Width="120" />
+            </StackPanel>
+            <Button Grid.Row="4" Grid.Column="2" Content="Save" Width="90" VerticalAlignment="Bottom" Click="BtnSaveUser_Click"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ButtonAssist.CornerRadius="25"
+                ToolTip="Click to add a user" Margin="10"/>
         </Grid>
     </Grid>
 </Window>
