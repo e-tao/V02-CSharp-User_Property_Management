@@ -27,6 +27,7 @@ namespace FireRnRGUI
         private User loginUser { get; set; }
         private List<User> userList;
         private List<Property> propertyList;
+        private List<Amenity> amenityList;
         
 
         public MainWindow()
@@ -39,6 +40,7 @@ namespace FireRnRGUI
             using var db = new FirernrContext();
             userList = db.Users.ToList();
             propertyList = db.Properties.ToList();
+            amenityList = db.Amenities.ToList();
             BtnUser_Click(this, e);
         }
 
@@ -108,9 +110,18 @@ namespace FireRnRGUI
         private void BtnProperty_Click(object sender, RoutedEventArgs e)
         {
             PropertyList.ItemsSource = propertyList;
+            AmenityList.ItemsSource = amenityList;
+            AmenityList.Visibility = Visibility.Visible;
             PropertyList.Visibility = Visibility.Visible;
             BtnUserList.Visibility = Visibility.Hidden;
             AddUser.Visibility = Visibility.Hidden;
+        }
+
+        private void PropertyList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var property = (Property)PropertyList.SelectedItem;
+            var propertyWindow = new PropertyDetail(property, loginUser);
+            propertyWindow.Show();
         }
     }
 }

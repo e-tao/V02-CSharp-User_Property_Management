@@ -33,6 +33,16 @@
                     Welcome <Run x:Name="WelcomeUser" />
                 </TextBlock>
             </StackPanel>
+            <!-- amentity list -->
+            <StackPanel VerticalAlignment="Center">
+                <ComboBox x:Name="AmenityList" Margin="200,0,0,0" materialDesign:HintAssist.Hint="Amenity Filter" materialDesign:HintAssist.Background="White" Visibility="Hidden" d:Visibility="Visible">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Amenity1}" Foreground="{StaticResource MaterialDesignFlatButtonRipple}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox> 
+            </StackPanel>
         </StackPanel>
         
         <!-- side grid -->
@@ -84,7 +94,6 @@
                 </ListBoxItem>
             </ListBox>
         </Grid>
-        
         
         <!--#region main views -->
         <!-- main view user -->
@@ -214,7 +223,7 @@
         </Grid>
     
         <!-- main view property -->
-        <ListView x:Name="PropertyList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
+        <ListView x:Name="PropertyList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden" MouseDoubleClick="PropertyList_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid >
