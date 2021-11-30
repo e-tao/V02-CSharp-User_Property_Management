@@ -26,6 +26,7 @@ namespace FireRnRGUI
 
         private User loginUser { get; set; }
         private List<User> userList;
+        private List<Property> propertyList;
         
 
         public MainWindow()
@@ -35,23 +36,24 @@ namespace FireRnRGUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            UserList.Visibility = Visibility.Hidden;
             using var db = new FirernrContext();
             userList = db.Users.ToList();
+            propertyList = db.Properties.ToList();
             BtnUser_Click(this, e);
         }
 
         private void BtnUser_Click(object sender, RoutedEventArgs e)
         {
-            UserList.ItemsSource = userList;
-            UserList.Visibility = Visibility.Visible;
+            BtnUserList.ItemsSource = userList;
+            BtnUserList.Visibility = Visibility.Visible;
             AddUser.Visibility = Visibility.Hidden;
+            PropertyList.Visibility = Visibility.Hidden;
         }
 
 
         private void PackIconLogin_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var selecteduser = (User)UserList.SelectedItem;
+            var selecteduser = (User)BtnUserList.SelectedItem;
             if(selecteduser != null)
             {
                 loginUser = selecteduser;
@@ -60,8 +62,10 @@ namespace FireRnRGUI
                 UserLogo.ImageSource = new BitmapImage(new Uri(loginUser.Photo, UriKind.Absolute));
                 WelcomeUser.Text = loginUser.UserFirstName + " " + loginUser.UserLastName;
                 WelcomeTitle.Visibility = Visibility.Visible;
-                Property.Visibility = Visibility.Visible;
-                AddProperty.Visibility = Visibility.Visible;
+                BtnUserList.Visibility = Visibility.Hidden;
+                BtnProperty_Click(this, e);
+                BtnProperty.Visibility = Visibility.Visible;
+                BtnAddProperty.Visibility = Visibility.Visible;
             }
             else
             {
@@ -72,7 +76,8 @@ namespace FireRnRGUI
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
             AddUser.Visibility = Visibility.Visible;
-            UserList.Visibility = Visibility.Hidden;
+            BtnUserList.Visibility = Visibility.Hidden;
+            PropertyList.Visibility= Visibility.Hidden;
         }
 
         private void BtnSaveUser_Click(object sender, RoutedEventArgs e)
@@ -98,6 +103,14 @@ namespace FireRnRGUI
             db.Users.Add(newUser);
             db.SaveChanges();
             Window_Loaded(this, e);
+        }
+
+        private void BtnProperty_Click(object sender, RoutedEventArgs e)
+        {
+            PropertyList.ItemsSource = propertyList;
+            PropertyList.Visibility = Visibility.Visible;
+            BtnUserList.Visibility = Visibility.Hidden;
+            AddUser.Visibility = Visibility.Hidden;
         }
     }
 }

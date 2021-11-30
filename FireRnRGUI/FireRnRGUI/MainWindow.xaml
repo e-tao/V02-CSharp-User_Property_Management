@@ -15,7 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded">
     <Grid>
-        <!-- main grid -->
+        <!--#region main graid -->
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
@@ -24,7 +24,8 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
+        <!--#endregion-->
+        
         <!-- top header -->
         <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" >
             <StackPanel VerticalAlignment="Center">
@@ -69,13 +70,13 @@
                         <Button Content="+ USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddUser_Click"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem x:Name="Property" Visibility="Hidden" d:Visibility="Visible">
+                <ListBoxItem x:Name="BtnProperty" Visibility="Hidden" d:Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
-                        <Button Content="PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5"/>
+                        <Button Content="PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnProperty_Click"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem x:Name="AddProperty" Visibility="Hidden" d:Visibility="Visible">
+                <ListBoxItem x:Name="BtnAddProperty" Visibility="Hidden" d:Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="HomeAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="+ PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5"/>
@@ -83,8 +84,11 @@
                 </ListBoxItem>
             </ListBox>
         </Grid>
+        
+        
+        <!--#region main views -->
         <!-- main view user -->
-        <ListView x:Name="UserList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
+        <ListView x:Name="BtnUserList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid >
@@ -210,8 +214,40 @@
         </Grid>
     
         <!-- main view property -->
-        <Grid x:Name="PropertyList" Grid.Column="1" Grid.Row="1" Visibility="Hidden" d:Visibility="Visible">
-            
-        </Grid>
+        <ListView x:Name="PropertyList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <Grid >
+                        <Grid.ColumnDefinitions  >
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0">
+                            <Image Source="{Binding PropertyPhoto}" />
+                        </Border>
+                        <StackPanel  Orientation="Vertical" Grid.Column="1" Margin="10">
+                            <!-- property name row  -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <Run Text="{Binding PropertyName}" /> 
+                                </TextBlock>
+                            </StackPanel>
+                            <!-- property address row  -->
+                            <StackPanel>
+                                <TextBlock>
+                                    Address: <Run Text="{Binding PropertyAddrNo}" /> <Run Text="{Binding PropertyAddrStreet}" />, <Run Text="{Binding PropertyAddrCity}" />, <Run Text="{Binding PropertyAddrProv}" /> <Run Text="{Binding PropertyAddrCountry}"/>, <Run Text="{Binding PropertyPostalCode}"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <!-- property amenity  -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    Amentity: <Run Text="TBD" />
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
