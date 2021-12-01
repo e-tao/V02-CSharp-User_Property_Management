@@ -23,7 +23,6 @@ namespace FireRnRGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private User loginUser { get; set; }
         private List<User> userList;
         private List<Property> propertyList;

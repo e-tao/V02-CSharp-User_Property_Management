@@ -77,7 +77,7 @@
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="UserAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
-                        <Button Content="+ USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddUser_Click"/>
+                        <Button Content="+ USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddUser_Click" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem x:Name="BtnProperty" Visibility="Hidden" d:Visibility="Visible">
@@ -250,7 +250,7 @@
                             <!-- property amenity  -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock>
-                                    Amentity: <Run Text="{Binding Property.Amenity}" />
+                                    Amentity: <Run Text="TBD" />
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>

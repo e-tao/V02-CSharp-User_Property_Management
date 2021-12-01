@@ -15,10 +15,10 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded">
     
-    <Grid>
+    <Grid x:Name="PropertyGrid">
         <!--#region main graid -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,11 +28,30 @@
         <!--#endregion-->
 
         <!-- top header -->
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" >
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock x:Name="PropertyTitle" Foreground="{StaticResource MaterialDesignFlatButtonRipple}" Margin="10" FontSize="18" d:Text="Property Name Goes Here" />
-            </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" VerticalAlignment="Center">
+            <TextBlock x:Name="PropertyTitle" Text="{Binding PropertyName}" Foreground="{StaticResource MaterialDesignFlatButtonRipple}" Margin="10" FontSize="18" d:Text="Property Name Goes Here" />
+        </StackPanel>
+        
+        <!--left-->
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" >
+            <Border BorderThickness="1" BorderBrush="Black" Height="180" Width="180" VerticalAlignment="Top" Margin="10"/>
+            <TextBlock Text="Rating goes here" Margin="0,10" HorizontalAlignment="Center" />
         </StackPanel>
 
+        
+        <!--right-->
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="2" Text="{Binding PropertyDescription}" TextWrapping="WrapWithOverflow" />
+
+
+        </Grid>
+       
     </Grid>
 </Window>
