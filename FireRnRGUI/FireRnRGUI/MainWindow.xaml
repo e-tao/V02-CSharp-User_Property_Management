@@ -95,7 +95,7 @@
             </ListBox>
         </Grid>
         
-        <!--#region main views -->
+        <!--#region main views-->
         <!-- main view user -->
         <ListView x:Name="BtnUserList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
             <ListView.ItemTemplate>
@@ -258,5 +258,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
+        
+        <!--#endregion main views-->
+     </Grid>
 </Window>

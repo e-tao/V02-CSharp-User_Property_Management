@@ -130,23 +130,8 @@ namespace FireRnRGUI
         {
             var selectedAmenity = AmenityList.SelectedValue as Amenity;
             var filter = propertyAmenityOwnersList.Where(p=>p.Amenity == selectedAmenity).ToList();
-
-
             var filterList = propertyList.Where(property => filter.Any(f => f.PropertyId == property.PropertyId));
-
-            //var filterList = propertyList.Where(property => propertyAmenityOwnersList.Any(a => a.Amenity==selectedAmenity)).ToList();
-
-
-
-            foreach(var result in filter)
-            {
-                Debug.WriteLine(result);
-            }
-
-
             PropertyList.ItemsSource = filterList;
-
-
         }
     }
 }
