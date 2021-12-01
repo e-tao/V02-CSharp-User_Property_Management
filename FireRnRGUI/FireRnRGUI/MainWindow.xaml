@@ -35,7 +35,7 @@
             </StackPanel>
             <!-- amentity list -->
             <StackPanel VerticalAlignment="Center">
-                <ComboBox x:Name="AmenityList" Margin="200,0,0,0" materialDesign:HintAssist.Hint="Amenity Filter" materialDesign:HintAssist.Background="White" Visibility="Hidden" d:Visibility="Visible">
+                <ComboBox x:Name="AmenityList" SelectionChanged="AmenityList_SelectionChanged" Margin="200,0,0,0" materialDesign:HintAssist.Hint="Amenity Filter" materialDesign:HintAssist.Background="White" Visibility="Hidden" d:Visibility="Visible">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Amenity1}" Foreground="{StaticResource MaterialDesignFlatButtonRipple}"/>
@@ -250,7 +250,7 @@
                             <!-- property amenity  -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock>
-                                    Amentity: <Run Text="TBD" />
+                                    Amentity: <Run Text="{Binding Property.Amenity}" />
                                 </TextBlock>
                             </StackPanel>
                         </StackPanel>

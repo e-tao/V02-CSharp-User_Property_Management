@@ -14,7 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Diagnostics;
 
 namespace FireRnRGUI
 {
@@ -28,7 +28,7 @@ namespace FireRnRGUI
         private List<User> userList;
         private List<Property> propertyList;
         private List<Amenity> amenityList;
-        
+        private List<PropertyAmenityOwner> propertyAmenityOwnersList;
 
         public MainWindow()
         {
@@ -41,6 +41,7 @@ namespace FireRnRGUI
             userList = db.Users.ToList();
             propertyList = db.Properties.ToList();
             amenityList = db.Amenities.ToList();
+            propertyAmenityOwnersList = db.PropertyAmenityOwners.ToList();
             BtnUser_Click(this, e);
         }
 
@@ -122,6 +123,15 @@ namespace FireRnRGUI
             var property = (Property)PropertyList.SelectedItem;
             var propertyWindow = new PropertyDetail(property, loginUser);
             propertyWindow.Show();
+        }
+
+        private void AmenityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedAmenity = AmenityList.SelectedValue as Amenity;
+            var resultList = propertyAmenityOwnersList.Where(p=>p.Amenity == selectedAmenity).ToList();
+            PropertyList.ItemsSource = resultList;
+
+
         }
     }
 }
