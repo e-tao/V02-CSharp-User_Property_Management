@@ -42,6 +42,7 @@ namespace FireRnRGUI
             propertyList = db.Properties.ToList();
             amenityList = db.Amenities.ToList();
             propertyAmenityOwnersList = db.PropertyAmenityOwners.ToList();
+
             BtnUser_Click(this, e);
         }
 
@@ -128,8 +129,22 @@ namespace FireRnRGUI
         private void AmenityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedAmenity = AmenityList.SelectedValue as Amenity;
-            var resultList = propertyAmenityOwnersList.Where(p=>p.Amenity == selectedAmenity).ToList();
-            PropertyList.ItemsSource = resultList;
+            var filter = propertyAmenityOwnersList.Where(p=>p.Amenity == selectedAmenity).ToList();
+
+
+            var filterList = propertyList.Where(property => filter.Any(f => f.PropertyId == property.PropertyId));
+
+            //var filterList = propertyList.Where(property => propertyAmenityOwnersList.Any(a => a.Amenity==selectedAmenity)).ToList();
+
+
+
+            foreach(var result in filter)
+            {
+                Debug.WriteLine(result);
+            }
+
+
+            PropertyList.ItemsSource = filterList;
 
 
         }
