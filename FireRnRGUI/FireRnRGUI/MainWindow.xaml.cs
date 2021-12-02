@@ -29,6 +29,8 @@ namespace FireRnRGUI
         private List<Amenity> amenityList;
         private List<PropertyAmenityOwner> propertyAmenityOwnersList;
 
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,7 +43,7 @@ namespace FireRnRGUI
             propertyList = db.Properties.ToList();
             amenityList = db.Amenities.ToList();
             propertyAmenityOwnersList = db.PropertyAmenityOwners.ToList();
-
+            AmenityList.Visibility = Visibility.Hidden;
             BtnUser_Click(this, e);
         }
 
@@ -51,6 +53,7 @@ namespace FireRnRGUI
             BtnUserList.Visibility = Visibility.Visible;
             AddUser.Visibility = Visibility.Hidden;
             PropertyList.Visibility = Visibility.Hidden;
+            AmenityList.Visibility= Visibility.Hidden;
         }
 
 
@@ -69,6 +72,7 @@ namespace FireRnRGUI
                 BtnProperty_Click(this, e);
                 BtnProperty.Visibility = Visibility.Visible;
                 BtnAddProperty.Visibility = Visibility.Visible;
+                BtnAddUser.IsEnabled = false;
             }
             else
             {
@@ -121,7 +125,9 @@ namespace FireRnRGUI
         private void PropertyList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var property = (Property)PropertyList.SelectedItem;
-            var propertyWindow = new PropertyDetail(property, loginUser);
+            var selectedProperty = propertyAmenityOwnersList.Where(p=>p.PropertyId == property.PropertyId).ToList();
+            var selectedPropertyAmenity =amenityList.Where(a => selectedProperty.Any(p => p.AmenityId == a.AmenityId));
+            var propertyWindow = new PropertyDetail(property, loginUser, selectedPropertyAmenity);
             propertyWindow.Show();
         }
 

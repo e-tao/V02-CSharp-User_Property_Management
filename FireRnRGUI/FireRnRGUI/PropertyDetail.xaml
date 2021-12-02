@@ -27,14 +27,20 @@
         </Grid.ColumnDefinitions>
         <!--#endregion-->
 
-        <!-- top header -->
+        <!--top header-->
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="{StaticResource PrimaryHueDarkBrush}" VerticalAlignment="Center">
             <TextBlock x:Name="PropertyTitle" Text="{Binding PropertyName}" Foreground="{StaticResource MaterialDesignFlatButtonRipple}" Margin="10" FontSize="18" d:Text="Property Name Goes Here" />
         </StackPanel>
         
         <!--left-->
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" >
-            <Border BorderThickness="1" BorderBrush="Black" Height="180" Width="180" VerticalAlignment="Top" Margin="10"/>
+            <Border VerticalAlignment="Top" Margin="10">
+                <Rectangle RadiusX="10" RadiusY="10" Height="180" Width="180">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding PropertyPhoto}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
             <TextBlock Text="Rating goes here" Margin="0,10" HorizontalAlignment="Center" />
         </StackPanel>
 
@@ -42,16 +48,26 @@
         <!--right-->
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="25">
+                    <Run Text="{Binding PropertyAddrNo}"/> <Run Text="{Binding PropertyAddrStreet}" /><LineBreak/>
+                    <Run Text="{Binding PropertyAddrCity}" /><LineBreak/>
+                    <Run Text="{Binding PropertyAddrProv}" />, <Run Text="{Binding PropertyAddrCountry}" /> <Run Text="{Binding PropertyPostalCode}" />
+                </TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="1" Margin="25" TextWrapping="WrapWithOverflow">
+                    Number of Rooms: <Run Text="{Binding NoOfRooms}" /><LineBreak/><LineBreak/>
+                    Amenities:<LineBreak/>
+                    <Run x:Name="Amenities" />
+            </TextBlock>
 
-            <TextBlock Grid.Row="2" Text="{Binding PropertyDescription}" TextWrapping="WrapWithOverflow" />
-
-
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding PropertyDescription}" TextAlignment="Justify" TextWrapping="WrapWithOverflow" Margin="25,0"/>
         </Grid>
-       
     </Grid>
 </Window>

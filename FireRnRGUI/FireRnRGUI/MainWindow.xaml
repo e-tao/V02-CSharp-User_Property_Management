@@ -14,6 +14,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded">
+
     <Grid>
         <!--#region main graid -->
         <Grid.RowDefinitions>
@@ -74,7 +75,7 @@
                         <Button Content="USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnUser_Click"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem>
+                <ListBoxItem x:Name="BtnAddUser">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="UserAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="+ USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddUser_Click" />
@@ -98,6 +99,16 @@
         <!--#region main views-->
         <!-- main view user -->
         <ListView x:Name="BtnUserList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="IsSelected" Value="True"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid >
@@ -113,25 +124,25 @@
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
-                        <StackPanel  Orientation="Vertical" Grid.Column="1" Margin="10">
+                        <StackPanel  Orientation="Vertical" Grid.Column="1" Margin="10" VerticalAlignment="Center">
                             <!-- name row  -->
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" >
                                 <TextBlock>
-                                    Name: <Run Text="{Binding UserFirstName}" /> <Run Text="{Binding UserLastName}" />
+                                    <Run Text="{Binding UserFirstName}" /> <Run Text="{Binding UserLastName}" />
                                 </TextBlock>
                             </StackPanel>
-                            <!-- address row  -->
+                            <!-- address row  --><!--
                             <StackPanel>
                                 <TextBlock>
                                     Address: <Run Text="{Binding MailAddrStreetNo}" /> <Run Text="{Binding MailAddrStreet}" />, <Run Text="{Binding MailAddrCity}" />, <Run Text="{Binding MailAddrProv}" /> <Run Text="{Binding MailAddrCountry}"/>, <Run Text="{Binding MailPostalCode}"/>
                                 </TextBlock>
                             </StackPanel>
-                            <!-- contacts row  -->
+                            --><!-- contacts row  --><!--
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock>
                                     Email: <Run Text="{Binding Email}" /> Phone No: <Run Text="{Binding PhoneNo, TargetNullValue=n/a}"/>
                                 </TextBlock>
-                            </StackPanel>
+                            </StackPanel>-->
                         </StackPanel>
                         <!-- login icon-->
                         <StackPanel Grid.Column="2" VerticalAlignment="Center">
@@ -232,7 +243,11 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0">
-                            <Image Source="{Binding PropertyPhoto}" />
+                            <Rectangle RadiusX="10" RadiusY="10" Height="60" Width="80">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{Binding PropertyPhoto}"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
                         </Border>
                         <StackPanel  Orientation="Vertical" Grid.Column="1" Margin="10">
                             <!-- property name row  -->
@@ -247,12 +262,12 @@
                                     Address: <Run Text="{Binding PropertyAddrNo}" /> <Run Text="{Binding PropertyAddrStreet}" />, <Run Text="{Binding PropertyAddrCity}" />, <Run Text="{Binding PropertyAddrProv}" /> <Run Text="{Binding PropertyAddrCountry}"/>, <Run Text="{Binding PropertyPostalCode}"/>
                                 </TextBlock>
                             </StackPanel>
-                            <!-- property amenity  -->
+                            <!-- property amenity  --><!--
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock>
                                     Amentity: <Run Text="TBD" />
                                 </TextBlock>
-                            </StackPanel>
+                            </StackPanel>-->
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
