@@ -7,8 +7,8 @@ global using System.Windows.Media.Imaging;
 global using System.Windows.Input;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata;
+global using System.Windows.Controls;
 
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;

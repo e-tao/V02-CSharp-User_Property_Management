@@ -18,8 +18,6 @@ namespace FireRnRGUI
             this.loginUser = loginUser;
             this.amenities = amenities;
             PropertyGrid.DataContext = property;
-            //using var db = new FirernrContext();
-            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,8 +30,6 @@ namespace FireRnRGUI
             }
 
             Amenities.Text = selectedPropertyAmentity;
-
-            
         }
     }
 }

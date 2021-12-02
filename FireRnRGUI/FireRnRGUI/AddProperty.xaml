@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded">
 
     <Grid x:Name="PropertyGrid">
         <!--#region main graid -->
@@ -105,17 +105,26 @@
                     <ComboBoxItem Content="Apartment" />
                 </ComboBox>
             </StackPanel>
-            
-            <!--row/space for amenities-->
-            
-            
-            
+            <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Amenities" />
+                <ComboBox x:Name="AmenityOptions" Margin="10,0,0,0" Width="180" SelectedValuePath="Content" materialDesign:HintAssist.Hint="Amenity Options" materialDesign:HintAssist.HintOpacity=".26">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Amenity1}" IsChecked="False" Checked="CheckBox_Checked"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Owner" />
+                <TextBox x:Name="Owner" Width="180" IsEnabled="False"/>
+            </StackPanel>
+
             <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Grid.RowSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
                 <Label Content="Description" />
                 <TextBox x:Name="PropertyDescription" Width="490" Height="100" BorderThickness="1" />
             </StackPanel>
-
-            <Button Grid.Row="8" Grid.Column="3" Content="Save" Width="90" VerticalAlignment="Bottom" 
+            <Button Grid.Row="8" Grid.Column="3" Content="Save" Width="90" VerticalAlignment="Bottom" Click="BtnSaveProperty_Click"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 materialDesign:ButtonAssist.CornerRadius="25"
                 ToolTip="Click to add a user" Margin="5"/>
