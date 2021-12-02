@@ -7,7 +7,6 @@
         public DateOnly AvailableFrom { get; set; }
         public DateOnly AvailableUntil { get; set; }
         public decimal DailyRate { get; set; }
-
         public virtual Property Property { get; set; } = null!;
     }
 }

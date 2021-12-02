@@ -90,7 +90,7 @@
                 <ListBoxItem x:Name="BtnAddProperty" Visibility="Hidden" d:Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="HomeAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
-                        <Button Content="+ PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5"/>
+                        <Button Content="+ PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddProperty_Click"/>
                     </StackPanel>
                 </ListBoxItem>
             </ListBox>
@@ -154,7 +154,7 @@
         </ListView>
 
         <!-- main view add user -->
-        <Grid x:Name="AddUser" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
+        <Grid x:Name="AddUser" Grid.Column="1" Grid.Row="1" Visibility="Hidden" d:Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />

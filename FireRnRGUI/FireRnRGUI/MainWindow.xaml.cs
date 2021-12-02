@@ -138,5 +138,17 @@ namespace FireRnRGUI
             var filterList = propertyList.Where(property => filter.Any(f => f.PropertyId == property.PropertyId));
             PropertyList.ItemsSource = filterList;
         }
+
+        private void BtnAddProperty_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUserList.Visibility = Visibility.Hidden;
+            AddUser.Visibility = Visibility.Hidden;
+            PropertyList.Visibility = Visibility.Hidden;
+            AmenityList.Visibility= Visibility.Hidden;
+
+            var addPropertyWindow = new AddProperty(loginUser);
+            addPropertyWindow.Show();
+
+        }
     }
 }
