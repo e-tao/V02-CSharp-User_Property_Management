@@ -240,7 +240,7 @@
         </Grid>
     
         <!-- main view property -->
-        <ListView x:Name="PropertyListGrid" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" d:Visibility="Visible" Visibility="Hidden" MouseDoubleClick="PropertyList_MouseDoubleClick">
+        <ListView x:Name="PropertyListGrid" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden" MouseDoubleClick="PropertyList_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid >
