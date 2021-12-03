@@ -69,7 +69,7 @@
             </StackPanel>
             <!--left side menu -->
             <ListBox Grid.Row="1" Background="{StaticResource PrimaryHueDarkBrush}">
-                <ListBoxItem>
+                <ListBoxItem x:Name="BtnUser">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="USER"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnUser_Click"/>

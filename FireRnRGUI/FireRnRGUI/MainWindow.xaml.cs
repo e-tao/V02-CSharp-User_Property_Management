@@ -62,6 +62,7 @@ namespace FireRnRGUI
                 WelcomeUser.Text = loginUser.UserFirstName + " " + loginUser.UserLastName;
                 WelcomeTitle.Visibility = Visibility.Visible;
                 UserListGrid.Visibility = Visibility.Hidden;
+                BtnUser.IsEnabled=false;
                 BtnProperty_Click(this, e);
             }
             else
@@ -161,6 +162,7 @@ namespace FireRnRGUI
 
             UserListGrid.Visibility = Visibility.Visible;
             BtnAddUser.IsEnabled = true;
+            BtnUser.IsEnabled = true;
             //BtnAddUser.Visibility = Visibility.Visible;
         }
     }
