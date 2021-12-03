@@ -1,8 +1,4 @@
-﻿
-
-using System.Diagnostics;
-
-namespace FireRnRGUI;
+﻿namespace FireRnRGUI;
 
 public partial class AddProperty : Window
 {
@@ -10,25 +6,31 @@ public partial class AddProperty : Window
     private User loginUser { get; set; }
     private List<Amenity> amenityList;
     private List<Property> propertyList;
-    List<string> selectedAmenities = new();
+    IEnumerable<Amenity> selectedAmenities;
+    List<string> checkBoxAmenitiesSelection;
+    MainWindow mainWindow { get; set; }
 
-    public AddProperty(User loginUser)
+
+
+    public AddProperty(User loginUser, MainWindow mainWindow)
     {
         InitializeComponent();
         this.loginUser = loginUser;
+        this.mainWindow = mainWindow;
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
         using var db = new FirernrContext();
         amenityList = db.Amenities.ToList();
-        propertyList = db.Properties.ToList();
         AmenityOptions.ItemsSource = amenityList;
         Owner.Text = $"{loginUser.UserFirstName} {loginUser.UserLastName} ({loginUser.UserName})";
+        checkBoxAmenitiesSelection = new();
     }
 
     private void BtnSaveProperty_Click(object sender, RoutedEventArgs e)
     {
+        using var db = new FirernrContext();
         var newProperty = new Property()
         {
             PropertyName = PropertyName.Text,
@@ -41,35 +43,46 @@ public partial class AddProperty : Window
             NoOfRooms = uint.Parse(NoOfRooms.Text),
             PropertyType = PropertyType.SelectedValue.ToString(),
             PropertyDescription = PropertyDescription.Text,
-            PropertyPhoto= PropertyPhoto.Text,
-
-            PropertyAmenityOwners = new List<PropertyAmenityOwner>()
-            {
-                new PropertyAmenityOwner
-                {
-                    UserId = loginUser.UserId,
-                    AmenityId = 1
-                }
-            }
-
+            PropertyPhoto = PropertyPhoto.Text
         };
-
-        using var db = new FirernrContext();
         db.Properties.Add(newProperty);
         db.SaveChanges();
+
+        uint newPropertyId = newProperty.PropertyId;
+
+        foreach (var amenity in selectedAmenities)
+        {
+            var newPropertyAmenityOwner = new PropertyAmenityOwner()
+            {
+                UserId = loginUser.UserId,
+                AmenityId = amenity.AmenityId,
+                PropertyId = newPropertyId
+            };
+
+            db.PropertyAmenityOwners.Add(newPropertyAmenityOwner);
+        };
+        db.SaveChanges();
+        
+        this.Close();
     }
+
+
 
     private void CheckBox_Checked(object sender, RoutedEventArgs e)
     {
-        
-
         CheckBox cb = sender as CheckBox;
-        
-        if (cb!=null)
+
+        if (cb != null)
         {
-            selectedAmenities.Add(cb.Content.ToString());
+            checkBoxAmenitiesSelection.Add(cb.Content.ToString());
         }
 
+        selectedAmenities = amenityList.Where(a => checkBoxAmenitiesSelection.Any(item => item.Equals(a.ToString())));
+    }
+
+    private void Window_Closed(object sender, EventArgs e)
+    {
+        mainWindow.PropertyListGrid.ItemsSource = propertyList;
+        mainWindow.ReloadAll();
     }
 }
-

@@ -13,8 +13,18 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded">
-
+        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    
+    
     <Grid x:Name="PropertyGrid">
         <!--#region main graid -->
         <Grid.RowDefinitions>
@@ -124,10 +134,11 @@
                 <Label Content="Description" />
                 <TextBox x:Name="PropertyDescription" Width="490" Height="100" BorderThickness="1" />
             </StackPanel>
+       
             <Button Grid.Row="8" Grid.Column="3" Content="Save" Width="90" VerticalAlignment="Bottom" Click="BtnSaveProperty_Click"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                materialDesign:ButtonAssist.CornerRadius="25"
-                ToolTip="Click to add a user" Margin="5"/>
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    ToolTip="Click to save the property" Margin="5"/>
         </Grid>
     </Grid>
 </Window>

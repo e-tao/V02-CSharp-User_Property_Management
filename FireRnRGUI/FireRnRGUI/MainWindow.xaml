@@ -36,7 +36,7 @@
             </StackPanel>
             <!-- amentity list -->
             <StackPanel VerticalAlignment="Center">
-                <ComboBox x:Name="AmenityList" SelectionChanged="AmenityList_SelectionChanged" Margin="200,0,0,0" materialDesign:HintAssist.Hint="Amenity Filter" materialDesign:HintAssist.Background="White" Visibility="Hidden" d:Visibility="Visible">
+                <ComboBox x:Name="AmenityListFilter" SelectionChanged="AmenityList_SelectionChanged" Margin="200,0,0,0" materialDesign:HintAssist.Hint="Amenity Filter" materialDesign:HintAssist.Background="White" Visibility="Hidden" d:Visibility="Visible">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Amenity1}" Foreground="{StaticResource MaterialDesignFlatButtonRipple}"/>
@@ -93,12 +93,18 @@
                         <Button Content="+ PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddProperty_Click"/>
                     </StackPanel>
                 </ListBoxItem>
+                <ListBoxItem x:Name="BtnLogout" Visibility="Visible">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Logout"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
+                        <Button Content="LOG OUT" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnLogout_Click"/>
+                    </StackPanel>
+                </ListBoxItem>
             </ListBox>
         </Grid>
         
         <!--#region main views-->
         <!-- main view user -->
-        <ListView x:Name="BtnUserList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
+        <ListView x:Name="UserListGrid" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Style.Triggers>
@@ -154,7 +160,7 @@
         </ListView>
 
         <!-- main view add user -->
-        <Grid x:Name="AddUser" Grid.Column="1" Grid.Row="1" Visibility="Hidden" d:Visibility="Visible">
+        <Grid x:Name="AddUserGrid" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
@@ -234,7 +240,7 @@
         </Grid>
     
         <!-- main view property -->
-        <ListView x:Name="PropertyList" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" Visibility="Hidden" MouseDoubleClick="PropertyList_MouseDoubleClick">
+        <ListView x:Name="PropertyListGrid" Grid.Column="1" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" d:Visibility="Visible" Visibility="Hidden" MouseDoubleClick="PropertyList_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid >
@@ -262,12 +268,12 @@
                                     Address: <Run Text="{Binding PropertyAddrNo}" /> <Run Text="{Binding PropertyAddrStreet}" />, <Run Text="{Binding PropertyAddrCity}" />, <Run Text="{Binding PropertyAddrProv}" /> <Run Text="{Binding PropertyAddrCountry}"/>, <Run Text="{Binding PropertyPostalCode}"/>
                                 </TextBlock>
                             </StackPanel>
-                            <!-- property amenity  --><!--
+                            <!-- number of rooms  -->
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock>
-                                    Amentity: <Run Text="TBD" />
+                                    Number of Rooms: <Run Text="{Binding NoOfRooms}" />
                                 </TextBlock>
-                            </StackPanel>-->
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
