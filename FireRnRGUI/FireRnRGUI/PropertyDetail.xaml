@@ -41,7 +41,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Border>
-            <TextBlock Text="Rating goes here" Margin="0,10" HorizontalAlignment="Center" />
+            <materialDesign:RatingBar x:Name="OverallRating" IsReadOnly="True" HorizontalAlignment="Center"/>
         </StackPanel>
 
         

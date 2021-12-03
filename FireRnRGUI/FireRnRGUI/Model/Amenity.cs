@@ -15,6 +15,7 @@ namespace FireRnRGUI.Model
 
         public virtual ICollection<PropertyAmenityOwner> PropertyAmenityOwners { get; set; }
 
+
         public override string ToString()
         {
             return Amenity1;

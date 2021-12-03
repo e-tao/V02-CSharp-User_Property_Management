@@ -309,20 +309,15 @@ namespace FireRnRGUI.Model
             {
                 entity.ToTable("rating");
 
-                entity.HasIndex(e => e.BookingId, "FK_rating_booking");
-
                 entity.HasIndex(e => e.UserId, "FK_rating_user");
-
-                entity.HasIndex(e => new { e.UserId, e.BookingId, e.UserRateAs }, "userID_bookingID_userRateAs")
-                    .IsUnique();
 
                 entity.Property(e => e.RatingId)
                     .HasColumnType("int(11) unsigned")
                     .HasColumnName("ratingID");
 
-                entity.Property(e => e.BookingId)
+                entity.Property(e => e.PropertyId)
                     .HasColumnType("int(11) unsigned")
-                    .HasColumnName("bookingID");
+                    .HasColumnName("propertyID");
 
                 entity.Property(e => e.UserComment)
                     .HasColumnType("text")
@@ -339,11 +334,6 @@ namespace FireRnRGUI.Model
                 entity.Property(e => e.UserRateAs)
                     .HasColumnType("enum('USER','OWNER','GUEST')")
                     .HasColumnName("userRateAs");
-
-                entity.HasOne(d => d.Booking)
-                    .WithMany(p => p.Ratings)
-                    .HasForeignKey(d => d.BookingId)
-                    .HasConstraintName("FK_rating_booking");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Ratings)

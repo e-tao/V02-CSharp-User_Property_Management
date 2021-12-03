@@ -8,7 +8,6 @@ namespace FireRnRGUI.Model
         public Booking()
         {
             Messages = new HashSet<Message>();
-            Ratings = new HashSet<Rating>();
         }
 
         public uint BookingId { get; set; }
@@ -29,6 +28,5 @@ namespace FireRnRGUI.Model
         public virtual Property Property { get; set; } = null!;
         public virtual User User { get; set; } = null!;
         public virtual ICollection<Message> Messages { get; set; }
-        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }
