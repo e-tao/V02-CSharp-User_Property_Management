@@ -1,4 +1,7 @@
-﻿namespace FireRnRGUI.Model
+﻿using System;
+using System.Collections.Generic;
+
+namespace FireRnRGUI.Model
 {
     public partial class Amenity
     {
@@ -12,12 +15,9 @@
 
         public virtual ICollection<PropertyAmenityOwner> PropertyAmenityOwners { get; set; }
 
-
         public override string ToString()
         {
             return Amenity1;
         }
-
-
     }
 }

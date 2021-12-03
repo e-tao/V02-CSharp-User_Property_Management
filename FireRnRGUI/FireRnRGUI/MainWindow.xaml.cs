@@ -18,6 +18,7 @@ namespace FireRnRGUI
         private List<Property> propertyList;
         private List<Amenity> amenityList;
         private List<PropertyAmenityOwner> propertyAmenityOwnersList;
+        private List<Rating> ratingList;
 
         public MainWindow()
         {

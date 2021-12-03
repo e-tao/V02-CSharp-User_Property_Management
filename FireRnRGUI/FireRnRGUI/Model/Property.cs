@@ -1,10 +1,13 @@
-﻿namespace FireRnRGUI.Model
+﻿using System;
+using System.Collections.Generic;
+
+namespace FireRnRGUI.Model
 {
     public partial class Property
     {
         public Property()
         {
-            AviliabilityRates = new HashSet<AviliabilityRate>();
+            Aviliabilityrates = new HashSet<Aviliabilityrate>();
             Bookings = new HashSet<Booking>();
             PropertyAmenityOwners = new HashSet<PropertyAmenityOwner>();
         }
@@ -22,7 +25,7 @@
         public string? PropertyPhoto { get; set; }
         public uint NoOfRooms { get; set; }
 
-        public virtual ICollection<AviliabilityRate> AviliabilityRates { get; set; }
+        public virtual ICollection<Aviliabilityrate> Aviliabilityrates { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<PropertyAmenityOwner> PropertyAmenityOwners { get; set; }
     }

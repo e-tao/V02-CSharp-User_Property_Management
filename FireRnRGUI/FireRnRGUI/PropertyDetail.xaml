@@ -48,9 +48,9 @@
         <!--right-->
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="150" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="140" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
@@ -66,8 +66,23 @@
                     Amenities:<LineBreak/>
                     <Run x:Name="Amenities" />
             </TextBlock>
-
             <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding PropertyDescription}" TextAlignment="Justify" TextWrapping="WrapWithOverflow" Margin="25,0"/>
+
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Orientation="Vertical">
+                <TextBox x:Name="Review" Height="80" Width="550" BorderThickness="1" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <materialDesign:RatingBar
+                      x:Name="RatingBar"
+                      Value="0"
+                      ValueChanged="BasicRatingBar_ValueChanged" Height="25" />
+                    
+                    <Button Grid.Row="4" Grid.Column="2" Content="Save" Width="80" Height="25" VerticalAlignment="Bottom" Click="BtnSaveReview_Click"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="25"
+                    ToolTip="Click to save your rating" Margin="10"/>
+                </StackPanel>
+            </StackPanel>
+            
         </Grid>
     </Grid>
 </Window>

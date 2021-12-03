@@ -1,4 +1,9 @@
-﻿namespace FireRnRGUI.Model
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+
+namespace FireRnRGUI.Model
 {
     public partial class FirernrContext : DbContext
     {
@@ -12,7 +17,7 @@
         }
 
         public virtual DbSet<Amenity> Amenities { get; set; } = null!;
-        public virtual DbSet<AviliabilityRate> AviliabilityRates { get; set; } = null!;
+        public virtual DbSet<Aviliabilityrate> Aviliabilityrates { get; set; } = null!;
         public virtual DbSet<Booking> Bookings { get; set; } = null!;
         public virtual DbSet<Message> Messages { get; set; } = null!;
         public virtual DbSet<Property> Properties { get; set; } = null!;
@@ -25,14 +30,14 @@
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseLazyLoadingProxies().UseMySql("server=localhost;database=firernr;user=root;password=;treattinyasboolean=true", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.6.4-mariadb"));
+                optionsBuilder.UseMySql("server=localhost;database=firernr;user=root;treattinyasboolean=true", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.21-mariadb"));
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.UseCollation("utf8mb3_general_ci")
-                .HasCharSet("utf8mb3");
+            modelBuilder.UseCollation("utf8_general_ci")
+                .HasCharSet("utf8");
 
             modelBuilder.Entity<Amenity>(entity =>
             {
@@ -50,12 +55,12 @@
                     .HasColumnName("amenity");
             });
 
-            modelBuilder.Entity<AviliabilityRate>(entity =>
+            modelBuilder.Entity<Aviliabilityrate>(entity =>
             {
                 entity.HasKey(e => e.RentalId)
                     .HasName("PRIMARY");
 
-                entity.ToTable("aviliabilityRate");
+                entity.ToTable("aviliabilityrate");
 
                 entity.HasIndex(e => e.PropertyId, "FK_rental_property");
 
@@ -76,7 +81,7 @@
                     .HasColumnName("propertyID");
 
                 entity.HasOne(d => d.Property)
-                    .WithMany(p => p.AviliabilityRates)
+                    .WithMany(p => p.Aviliabilityrates)
                     .HasForeignKey(d => d.PropertyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rental_property");
@@ -237,7 +242,7 @@
                     .HasColumnName("propertyName");
 
                 entity.Property(e => e.PropertyPhoto)
-                    .HasMaxLength(50)
+                    .HasMaxLength(516)
                     .HasColumnName("propertyPhoto");
 
                 entity.Property(e => e.PropertyPostalCode)
@@ -332,19 +337,17 @@
                     .HasColumnName("userRate");
 
                 entity.Property(e => e.UserRateAs)
-                    .HasColumnType("enum('USER','OWNER')")
+                    .HasColumnType("enum('USER','OWNER','GUEST')")
                     .HasColumnName("userRateAs");
 
                 entity.HasOne(d => d.Booking)
                     .WithMany(p => p.Ratings)
                     .HasForeignKey(d => d.BookingId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rating_booking");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Ratings)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_rating_user");
             });
 
