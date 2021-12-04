@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FireRnRGUI.Model
+﻿namespace FireRnRGUI.Model
 {
     /// <summary>
     /// Junction table
