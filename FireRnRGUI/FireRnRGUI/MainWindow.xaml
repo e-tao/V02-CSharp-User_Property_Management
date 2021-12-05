@@ -62,7 +62,7 @@
                     </Ellipse>
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource MaterialDesignColumnHeader}">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="{StaticResource MaterialDesignColumnHeader}">
                         <Run x:Name="First"/> <Run x:Name="Last" />
                     </TextBlock>
                 </StackPanel>
@@ -81,19 +81,19 @@
                         <Button Content="+ USER" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddUser_Click" />
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem x:Name="BtnProperty" Visibility="Hidden" d:Visibility="Visible">
+                <ListBoxItem x:Name="BtnProperty" IsEnabled="False">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Home"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnProperty_Click"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem x:Name="BtnAddProperty" Visibility="Hidden" d:Visibility="Visible">
+                <ListBoxItem x:Name="BtnAddProperty" IsEnabled="False">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="HomeAdd"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="+ PROPERTY" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnAddProperty_Click"/>
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem x:Name="BtnLogout" Visibility="Visible">
+                <ListBoxItem x:Name="BtnLogout" IsEnabled="False">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Logout"  Width="30" Height="30" VerticalAlignment="Center" Opacity="0.5"/>
                         <Button Content="LOG OUT" Width="100" FontSize="11" Margin="0,5,5,5" Click="BtnLogout_Click"/>

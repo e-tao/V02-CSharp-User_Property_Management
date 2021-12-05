@@ -7,7 +7,6 @@ global using System.Windows;
 global using System.Windows.Controls;
 global using System.Windows.Input;
 global using System.Windows.Media.Imaging;
-global using System.Diagnostics;
 
 namespace FireRnRGUI
 {
@@ -19,7 +18,6 @@ namespace FireRnRGUI
         private List<Property> propertyList;
         private List<Amenity> amenityList;
         private List<PropertyAmenityOwner> propertyAmenityOwnersList;
-        private List<Rating> ratingList;
 
         public MainWindow()
         {
@@ -39,6 +37,7 @@ namespace FireRnRGUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ReloadAll();
+            UserLogo.ImageSource = new BitmapImage(new Uri(@"images\defaultfire.png", UriKind.Relative));
             BtnUser_Click(this, e);
         }
 
@@ -62,9 +61,16 @@ namespace FireRnRGUI
                 Last.Text = loginUser.UserLastName;
                 UserLogo.ImageSource = new BitmapImage(new Uri(loginUser.Photo, UriKind.Absolute));
                 WelcomeUser.Text = loginUser.UserFirstName + " " + loginUser.UserLastName;
+                
                 WelcomeTitle.Visibility = Visibility.Visible;
                 UserListGrid.Visibility = Visibility.Hidden;
-                BtnUser.IsEnabled=false;
+
+                BtnUser.IsEnabled = false;
+                BtnAddUser.IsEnabled = false;
+                BtnProperty.IsEnabled = true;
+                BtnAddProperty.IsEnabled = true;
+                BtnLogout.IsEnabled = true;
+                
                 BtnProperty_Click(this, e);
             }
             else
@@ -112,13 +118,9 @@ namespace FireRnRGUI
 
             AmenityListFilter.Visibility = Visibility.Visible;
             PropertyListGrid.Visibility = Visibility.Visible;
-            BtnProperty.Visibility = Visibility.Visible;
-            BtnAddProperty.Visibility = Visibility.Visible;
 
             UserListGrid.Visibility = Visibility.Hidden;
             AddUserGrid.Visibility = Visibility.Hidden;
-
-            BtnAddUser.IsEnabled = false;
         }
 
         private void PropertyList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -127,7 +129,7 @@ namespace FireRnRGUI
             var selectedProperty = propertyAmenityOwnersList.Where(p => p.PropertyId == property.PropertyId).ToList();
             var selectedPropertyAmenity = amenityList.Where(a => selectedProperty.Any(p => p.AmenityId == a.AmenityId));
             var propertyWindow = new PropertyDetail(property, loginUser, selectedPropertyAmenity);
-            propertyWindow.Show();
+            propertyWindow.ShowDialog();
         }
 
         private void AmenityList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -153,19 +155,18 @@ namespace FireRnRGUI
             loginUser = null;
             First.Text = null;
             Last.Text = null;
-            UserLogo.ImageSource = null;
+            UserLogo.ImageSource = new BitmapImage(new Uri(@"images\defaultfire.png", UriKind.Relative));
             WelcomeUser.Text = null;
             WelcomeTitle.Visibility = Visibility.Hidden;
-
-            BtnProperty.Visibility = Visibility.Hidden;
-            BtnAddProperty.Visibility = Visibility.Hidden;
             PropertyListGrid.Visibility = Visibility.Hidden;
             AmenityListFilter.Visibility = Visibility.Hidden;
-
             UserListGrid.Visibility = Visibility.Visible;
+            
             BtnAddUser.IsEnabled = true;
             BtnUser.IsEnabled = true;
-            //BtnAddUser.Visibility = Visibility.Visible;
+            BtnProperty.IsEnabled = false;
+            BtnAddProperty.IsEnabled = false;
+            BtnLogout.IsEnabled = false;
         }
     }
 }

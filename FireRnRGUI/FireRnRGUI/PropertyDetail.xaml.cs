@@ -7,7 +7,7 @@
         private User loginUser;
         private IEnumerable<Amenity> amenities;
         private IEnumerable<Rating> relatedRating;
-        private IEnumerable<Rating> relatedRatingUser;
+        private IEnumerable<Rating> relatedRatingAndUser;
         private List<Rating> ratingsList;
         private int rating;
         private Rating selectedRating;
@@ -38,8 +38,17 @@
 
 
             relatedRating = ratingsList.Where(p => p.PropertyId == property.PropertyId && p.UserRateAs.Equals("USER")).OrderByDescending(r=>r.RatingId);
-            relatedRatingUser = relatedRating.Where(p => userList.Any(u => u.UserId == p.UserId));
-            ReviewList.ItemsSource = relatedRatingUser;
+            relatedRatingAndUser = relatedRating.Where(p => userList.Any(u => u.UserId == p.UserId));
+            ReviewList.ItemsSource = relatedRatingAndUser;
+
+            var user = relatedRatingAndUser.Where(u => u.UserId == loginUser.UserId);
+            if(user.Any())
+            {
+                Review.Text = "You already reviewed this property, \rHave more to share? Please update the review. \rThanks for using FireRnR service.";
+                SaveUpdate.IsEnabled = false;
+            }
+
+
             LoginUser.Text = loginUser.UserFirstName + " " + loginUser.UserLastName;
             UserLogo.ImageSource = new BitmapImage(new Uri(loginUser.Photo, UriKind.Absolute));
 
@@ -121,6 +130,7 @@
                 Review.Text = selectedRating.UserComment;
                 RatingBar.Value = (int)selectedRating.UserRate;
                 SaveUpdate.Content = "Update";
+                SaveUpdate.IsEnabled = true;
                 Delete.IsEnabled = true;
             }
         }

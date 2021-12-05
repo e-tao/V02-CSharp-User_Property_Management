@@ -81,13 +81,13 @@
             
             <!-- rating bar, save and delete-->
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Orientation="Vertical">
-                <TextBox AcceptsReturn="True" x:Name="Review" Height="80" Width="550" Foreground="{StaticResource MaterialDesignTextBoxBorder}" Background="{StaticResource MaterialDesignTextFieldBoxHoverBackground}"/>
+                <TextBox AcceptsReturn="True" x:Name="Review" Height="80" Width="550" Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="WrapWithOverflow"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <materialDesign:RatingBar
                       x:Name="RatingBar"
                       Value="0"
                       ValueChanged="BasicRatingBar_ValueChanged" Height="25" />
-                    
+
                     <Button x:Name="SaveUpdate" Content="Save" Width="80" Height="25" VerticalAlignment="Bottom" Click="BtnSaveReviewDelete_Click"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     materialDesign:ButtonAssist.CornerRadius="10" Margin="10"/>
@@ -123,7 +123,7 @@
                                   Width="400" Padding="8"
                                   UniformCornerRadius="6" MouseDown="Card_MouseDown" Grid.Column="0">
                                 <TextBlock TextWrapping="WrapWithOverflow">
-                                        <Run Text="Reviewed By:" FontSize="10"> </Run> <Run Text="{Binding User.UserFirstName}" FontSize="10"/> <Run Text="{Binding User.UserLastName}" FontSize="10"/><LineBreak/>
+                                        <Run Text="Reviewed by:" FontSize="10" /> <Run Text="{Binding User.UserFirstName}" FontSize="10"/> <Run Text="{Binding User.UserLastName}" FontSize="10"/><LineBreak/>
                                         <Run  Text="{Binding UserComment}" />
                                 </TextBlock>
                             </materialDesign:Card>
