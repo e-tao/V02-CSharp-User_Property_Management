@@ -180,7 +180,7 @@
             <StackPanel Grid.Column="1" Grid.Row="0"  Grid.ColumnSpan="2" Orientation="Horizontal">
                 <Label Content="Photo" VerticalAlignment="Bottom" />
                 <TextBox x:Name="Photo" VerticalAlignment="Bottom" Width="250" />
-                <Ellipse VerticalAlignment="Bottom" Width="80" Height="80" Margin="20,1,1,1" Opacity="0.85">
+                <Ellipse VerticalAlignment="Bottom" Width="70" Height="70" Margin="10,0" Opacity="0.85">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding ElementName=Photo, Path=Text}" />
                     </Ellipse.Fill>

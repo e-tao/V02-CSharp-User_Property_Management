@@ -83,32 +83,36 @@ namespace FireRnRGUI
         {
             AddUserGrid.Visibility = Visibility.Visible;
             UserListGrid.Visibility = Visibility.Hidden;
-            PropertyListGrid.Visibility = Visibility.Hidden;
+            //PropertyListGrid.Visibility = Visibility.Hidden;
         }
 
         private void BtnSaveUser_Click(object sender, RoutedEventArgs e)
         {
+            var currentDate = DateOnly.FromDateTime(DateTime.Now);
+
             var newUser = new User
             {
-                UserName = UserName.Text,
-                UserFirstName = FirstName.Text,
-                UserLastName = LastName.Text,
+                UserName = UserName.Text.Trim(),
+                UserFirstName = FirstName.Text.Trim(),
+                UserLastName = LastName.Text.Trim(),
                 Gender = Gender.SelectedValue.ToString(),
                 Photo = Photo.Text,
-                MailAddrStreetNo = StreetNo.Text,
-                MailAddrStreet = Street.Text,
-                MailAddrCity = City.Text,
-                MailAddrProv = Province.Text,
-                MailAddrCountry = Country.Text,
-                MailPostalCode = PostalCode.Text,
-                Email = Email.Text,
-                PhoneNo = Phone.Text
+                MailAddrStreetNo = StreetNo.Text.Trim(),
+                MailAddrStreet = Street.Text.Trim(),
+                MailAddrCity = City.Text.Trim(),
+                MailAddrProv = Province.Text.Trim(),
+                MailAddrCountry = Country.Text.Trim(),
+                MailPostalCode = PostalCode.Text.Trim(),
+                Email = Email.Text.Trim(),
+                PhoneNo = Phone.Text,
+                DateJoined = currentDate
             };
 
             using var db = new FirernrContext();
             db.Users.Add(newUser);
             db.SaveChanges();
             ReloadAll();
+            BtnUser_Click(this, e);
         }
 
         private void BtnProperty_Click(object sender, RoutedEventArgs e)
