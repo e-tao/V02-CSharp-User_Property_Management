@@ -44,7 +44,7 @@
             var user = relatedRatingAndUser.Where(u => u.UserId == loginUser.UserId);
             if(user.Any())
             {
-                Review.Text = "You already reviewed this property, \rHave more to share? Please update the review. \rThanks for using FireRnR service.";
+                Review.Text = "Have more to share? \rPlease update your review. \rThanks for using FireRnR service.";
                 SaveUpdate.IsEnabled = false;
             }
 
@@ -101,6 +101,7 @@
                 db.Ratings.Remove(selectedRating);
                 Reset();
                 db.SaveChanges();
+                Delete.IsEnabled = false;
             }
             else if (SaveUpdate.Content.Equals("Update"))
             {
