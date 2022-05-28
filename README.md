@@ -27,7 +27,7 @@ The project uses the following language, toolkit, IDE, database etc...
 
 - [C#] - The sole language for the application
 - [WPF] -  Graphical class library 
-- [EF Core] -  Graphical class library 
+- [EF Core]
 - [MariaDB] - RDBMS
 - [Visual Studio] - IDE for C# development
 - [Material Design XAML Toolkit] - GUI libraries for WPF
